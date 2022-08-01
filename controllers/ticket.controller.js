@@ -1,6 +1,7 @@
 const constants = require("../utils/constants");
 const Ticket = require("../models/ticket.model");
 const User = require("../models/user.model");
+const sendNotificationReq = require('../utils/notificationClient');
 
 exports.createTicket = async (req, res) => {
 
@@ -36,6 +37,8 @@ exports.createTicket = async (req, res) => {
                 engineer.ticketsAssigned.push(ticketCreated._id);
                 await engineer.save();
             }
+
+            sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` , "Testing Crm Notification ",`${ticketCreated.reporter},${ticketCreated.assignee},sayyedaamandev01@gmail.com`, "CRM APP");
             res.status(201).send(ticketCreated);
         }
 
