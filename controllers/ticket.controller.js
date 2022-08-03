@@ -40,7 +40,7 @@ exports.createTicket = async (req, res) => {
             
             //await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` , "Testing Crm Notification ",`sayyedaamandev01@gmail.com`, "CRM APP");
 
-            await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` ,`content : ${ticketCreated.description}`,customer.email, ticketCreated.reporter);
+            await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` ,`content : ${ticketCreated.description}`,`${customer.email},${engineer.email}, "admin123@gmail.com"`, ticketCreated.reporter);
             res.status(201).send(ticketCreated);
         }
 
@@ -102,7 +102,6 @@ exports.updateTicket = async (req, res)=>{
         ticket.assignee = req.body.assignee != undefined ? req.body.assignee : ticket.assignee;
 
         const updatedTicket = await ticket.save();
-
         res.status(200).send(updatedTicket);
 
     }catch(err){
