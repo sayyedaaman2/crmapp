@@ -1,8 +1,6 @@
-
 if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
-
 module.exports = {
-    DB_URL : process.env.DB_URL
+    CLIENT_REST_CALL : process.env.CLIENT_REST_CALL
 }

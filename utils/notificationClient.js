@@ -1,6 +1,6 @@
 const Client = require("node-rest-client").Client;
 const client = new Client();
-
+const ClientRestCall = require('../configs/client.config');
 
 module.exports = (subject , content, recepients, requester)=>{
 
@@ -29,7 +29,7 @@ module.exports = (subject , content, recepients, requester)=>{
     
     try{
         console.log("in the client function")
-        client.post("http://localhost:8000/notiserv/api/v1/notifications",args, (data, res)=>{
+        client.post(ClientRestCall.CLIENT_REST_CALL,args, (data, res)=>{
 
             console.log("Request sent");
             console.log(data);

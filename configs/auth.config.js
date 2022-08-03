@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
 module.exports = {
-    secret : "Sayyed-Aaman-Secret-Key"
+    secret : process.env.SECRET_KEY
 }
