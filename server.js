@@ -24,7 +24,7 @@ db.once("open", ()=>{
 async function init(){
     try{
         //drop the collections
-        //await User.collection.drop();
+        await User.collection.drop();
 
         const user = await User.create({
             name : "admin",

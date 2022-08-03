@@ -37,8 +37,10 @@ exports.createTicket = async (req, res) => {
                 engineer.ticketsAssigned.push(ticketCreated._id);
                 await engineer.save();
             }
+            
+            //await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` , "Testing Crm Notification ",`sayyedaamandev01@gmail.com`, "CRM APP");
 
-            sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` , "Testing Crm Notification ",`${ticketCreated.reporter},${ticketCreated.assignee},sayyedaamandev01@gmail.com`, "CRM APP");
+            await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` ,`content : ${ticketCreated.description}`,customer.email, ticketCreated.reporter);
             res.status(201).send(ticketCreated);
         }
 

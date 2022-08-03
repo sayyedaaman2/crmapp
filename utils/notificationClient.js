@@ -1,5 +1,5 @@
 const Client = require("node-rest-client").Client;
-const client = Client();
+const client = new Client();
 
 
 module.exports = (subject , content, recepients, requester)=>{
@@ -11,10 +11,11 @@ module.exports = (subject , content, recepients, requester)=>{
         content : content,
         requester : requester
     }
+    
 
     //Prepare the headers
     const reqHeader = {
-        "Content-Type" : "applicaton/json"
+        "Content-Type": "application/json"
     }
 
     //Combine headers and req body together
@@ -22,6 +23,7 @@ module.exports = (subject , content, recepients, requester)=>{
         data : reqBody,
         headers : reqHeader
     }
+    console.log(args);
 
     //make a post call and handle the response 
     
@@ -31,9 +33,9 @@ module.exports = (subject , content, recepients, requester)=>{
 
             console.log("Request sent");
             console.log(data);
-            res.send(200).send("hello");
+
         })
     }catch(err){
-        console.log(err.message);
+        console.log("Some Error while sending the message : ", err.message);
     }
 }
