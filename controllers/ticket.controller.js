@@ -102,6 +102,11 @@ exports.updateTicket = async (req, res)=>{
         ticket.assignee = req.body.assignee != undefined ? req.body.assignee : ticket.assignee;
 
         const updatedTicket = await ticket.save();
+        const customer = await User.findOne({ userId : req.userId });
+        const engineer = await User.findOne({ userId : updatedTicket.assignee });
+        
+        await sendNotificationReq(`Ticket updated with id : ${updatedTicket._id}` ,`content : ${updatedTicket.description}`,`${customer.email},${engineer.email}, "admin123@gmail.com"`, updatedTicket.reporter);
+
         res.status(200).send(updatedTicket);
 
     }catch(err){
