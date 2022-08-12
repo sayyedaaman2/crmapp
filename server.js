@@ -18,7 +18,7 @@ db.on("error",()=>{
 });
 db.once("open", ()=>{
     console.log("Connected to mongoDB");
-    init();
+    //init();
 });
 
 async function init(){
@@ -44,7 +44,9 @@ async function init(){
 require('./routes/auth.route')(app);
 require('./routes/user.route')(app);
 require('./routes/ticket.route')(app);
-
-app.listen(serverConfig.PORT,()=>{
+/**
+ * So this can be used for the intergation Testing
+ */
+module.exports = app.listen(serverConfig.PORT,()=>{
     console.log("Started the server on the PORT number : ", serverConfig.PORT);
 });
