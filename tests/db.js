@@ -20,7 +20,7 @@ module.exports.connect = async ()=>{
             useUnifiedTopology : true,
             maxPoolSize : 10
         }
-        mongoose.connect(uri, mongooseOpts); // mongoose is now connected to MongoDB
+        await mongoose.connect(uri, mongooseOpts); // mongoose is now connected to MongoDB
 
     }
 }
@@ -41,8 +41,8 @@ module.exports.closeDatabase = async ()=>{
  * 
  * when each individual test is completed
  */
-module.exports.clearDatabase = () =>{
-    const collections = mongoose.connection.collections;
+module.exports.clearDatabase = async () =>{
+    const collections = await mongoose.connection.collections;
     for(const key in collections){
         const collection = collections[key];
         collection.deleteMany()// delete the all collections
