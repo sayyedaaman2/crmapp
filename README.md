@@ -296,3 +296,4 @@ sample response body :
 ```
 
 ---
+### POSTMAN Collection [link](https://www.getpostman.com/collections/01cbed79c01003205223)
