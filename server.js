@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const serverConfig = require('./configs/server.config');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,6 +8,10 @@ const dbConfig = require('./configs/db.config');
 const bcrypt = require('bcrypt');
 const User = require('./models/user.model');
 
+const corsOption = {
+    origin : ['http://localhost:3000'],
+};
+app.use(cors(corsOption));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -40,6 +45,12 @@ async function init(){
 
     }
 }
+
+app.get('/',(req,res)=>{
+    res.status(200).send({
+        message : "testing api..."
+    })
+})
 
 require('./routes/auth.route')(app);
 require('./routes/user.route')(app);
