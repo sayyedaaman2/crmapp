@@ -45,6 +45,13 @@ const validateSignUpRequestBody = async (req, res, next) =>{
             message : "Failed ! Not a valid email id"
         })
     }
+    const emailExist = await User.findOne({email : req.body.email});
+
+    if(emailExist){
+        return res.status(400).send({
+            message : "Failed ! Email Already taken"
+        })
+    }
     if(!req.body.userType){
         return res.status(400).send({
             message : "Failed ! User type is not passed"
