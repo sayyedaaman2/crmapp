@@ -8,8 +8,19 @@ exports.userResponse = (users)=>{
             userid : user.userId,
             email : user.email,
             userTypes : user.userType,
-            userStatus : user.userStatus
+            userStatu : user.userStatus
         });
     });
+    return userResult;
+}
+
+exports.singleUser = (user)=>{
+    const userResult = {
+        name: user.name,
+        userId : user.userId,
+        email: user.email,
+        userType : user.userType,
+        userStatus : user.userStatus
+    }
     return userResult;
 }

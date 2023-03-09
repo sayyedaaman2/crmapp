@@ -72,10 +72,13 @@ exports.signin = async (req, res) => {
       },
       authConfig.secret,
       {
-        expiresIn: 600,
+        expiresIn: 3600000,
       }
     );
       //todo: add cookie 
+    res.cookie('x-access-token', token, { maxAge: 3600000 });
+    res.cookie(encodeURIComponent('id'),encodeURIComponent(user.userId),{ maxAge: 3600000 });
+
     res.status(200).send({
       name: user.name,
       userId: user.userId,

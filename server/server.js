@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const serverConfig = require('./configs/server.config');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,10 +10,11 @@ const bcrypt = require('bcrypt');
 const User = require('./models/user.model');
 
 const corsOption = {
+    credentials  : true,
     origin : ['http://localhost:3000'],
 };
 app.use(cors(corsOption));
-
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
@@ -29,7 +31,7 @@ db.once("open", ()=>{
 async function init(){
     try{
         //drop the collections
-        await User.collection.drop();
+        // await User.collection.drop();
 
         const user = await User.create({
             name : "admin",

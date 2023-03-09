@@ -33,8 +33,9 @@ exports.findAll = async (req, res) => {
 exports.findByUserId = async (req, res) => {
 
     try {
-        const user = await User.find({ userId: req.params.id });
-        return res.status(200).send(objectConverter.userResponse(user));
+        const user = await User.findOne({ userId: req.params.id });
+        return res.status(200).send(objectConverter.singleUser(user));
+
 
     } catch (err) {
         console.log("Error while searching the user ", err);

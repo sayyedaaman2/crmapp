@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.menu{
+    @apply hidden z-50 absolute top-full left-0 w-screen translate-x-full transition-all duration-700 ease-in-out md:block md:translate-x-0 md:relative md:w-20 md:basis-48;
+}
+
+.menu_active{
+    @apply  block translate-x-0 ;
+}
+.menu-items{
+    @apply  bg-gray-100 opacity-100  text-black hover:text-white w-full h-10  uppercase font-semibold md:bg-transparent;
+}
+.menu-href{
+    @apply    w-full h-full flex justify-center items-center border-2 border-slate-600 hover:bg-purple-500 active:bg-purple-500 md:border-0 md:hover:bg-purple-600 md:rounded-xl;
+}
+
+.nav_bg{
+    background-image: linear-gradient(to right top, #d16b6b, #dc6b7e, #e46d93, #e871ab, #e778c4, #e177d0, #d978dd, #cd7aeb, #c072ee, #b06bf2, #9e64f7, #885ffb);
+}
+
+
+.row{
+    @apply h-4 leading-3 sm:leading-6 md:leading-8 flex-auto ;
+}
+.label{
+    @apply text-sm w-14 sm:w-[20%]  text-center bg-gradient-to-tr to-slate-500 from-zinc-700 text-white rounded-lg ;
+}
+.input-field{
+    @apply   flex justify-between ml-1 sm:ml-5  rounded-xl ;
+}
+.input-box{
+    @apply bg-white  py-1 px-4 border-gray-500 shadow-md shadow-black rounded-xl text-sm sm:text-lg placeholder:text-sm;
+}
