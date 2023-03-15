@@ -7,6 +7,7 @@ exports.userResponse = (users)=>{
             name : user.name,
             userid : user.userId,
             email : user.email,
+            image: user.image,
             userTypes : user.userType,
             userStatu : user.userStatus
         });
@@ -19,6 +20,7 @@ exports.singleUser = (user)=>{
         name: user.name,
         userId : user.userId,
         email: user.email,
+        image: user.image,
         userType : user.userType,
         userStatus : user.userStatus
     }

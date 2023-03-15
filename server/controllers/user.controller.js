@@ -2,6 +2,14 @@ const User = require('../models/user.model');
 const objectConverter = require("../utils/objectConverter");
 const constants = require("../utils/constants");
 
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "ducgahwxp",
+  api_key: "845862313931878",
+  api_secret: "j84fzlYZ5d2iSjOqlihmtIiaaoQ",
+});
+
 exports.findAll = async (req, res) => {
 
     const queryObj = {};
@@ -60,6 +68,34 @@ exports.update = async (req, res) => {
             email: updatedUser.email,
             userType: updatedUser.userType,
             userStatus: updatedUser.userStatus
+        })
+
+    } catch (err) {
+        console.log("Error whileDB operation", err.message);
+        res.status(500).send({
+            message: "Internal Server Error"
+        })
+    }
+}
+
+exports.uploadImg = async (req, res) => {
+
+    try {
+        let image;
+
+        const img = req.body.image;
+        // console.log(img)
+        if(img){
+            image = await (await cloudinary.uploader.upload(req.body.image)).url
+        }
+        const user = await  User.findOne({userId : req.userId});
+        console.log('image',user)
+        user.image = image
+        const updatedUser = await user.save();
+
+        res.status(200).send({
+            message : "Successfully updated image",
+            ...objectConverter.singleUser(updatedUser)
         })
 
     } catch (err) {

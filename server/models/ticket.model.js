@@ -28,21 +28,9 @@ const ticketSchema = new mongoose.Schema({
     }, 
     assignee : {
         type  : String
-    },
-    createdAt : {
-        type : Date,
-        immutable : true,
-        default : ()=>{
-            return Date.now()
-        }
-    },
-    updatedAt : {
-        type : Date,
-        default : ()=>{
-            return Date.now()
-        }
     }
+    
 
-}, {versionKey : false })
+}, {timestamps : true , versionKey : false })
 
 module.exports = mongoose.model("Ticket", ticketSchema);

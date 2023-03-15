@@ -23,18 +23,9 @@ const userSchema = new mongoose.Schema({
         minLength : 10,
         unique : true
     },
-    createdAt : {
-        type : Date,
-        immutable : true,
-        default : ()=>{
-            return Date.now();
-        }
-    },
-    updatedAt : {
-        type : Date,
-        default : ()=>{
-            return Date.now();
-        }
+    image : {
+        type : String,
+        default : ""
     },
     userType : {
         type : String,
@@ -56,6 +47,8 @@ const userSchema = new mongoose.Schema({
         type : [mongoose.SchemaType.ObjectId],
         ref : "Ticket",
     }
+},{
+    timestamps : true , versionKey : false
 });
 
 module.exports = mongoose.model("user", userSchema);
