@@ -14,6 +14,10 @@ import ErrorMsg from "../Components/ErrorMsg";
 
 function SignUp() {
   const [userType, setUserType] = useState(constant.userType.customer);
+  const [showPassword, setShowPassword] = useState(false);
+  const tooglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   useEffect(() => {
     console.log("updated userType", userType);
@@ -83,7 +87,7 @@ function SignUp() {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
         enableReinitialize={true}
-        className="h-screen bg-yellow-100 shadow-slate-500 shadow-inner block box-border"
+        className="h-screen w-full bg-yellow-100 shadow-slate-500 shadow-inner block box-border"
       >
         <div className="border-2  mx-auto box-border">
           <div className="bg-white w-[10rem] border-2 border-slate-800 rounded-full  mx-auto my-9 transcplate ">
@@ -94,63 +98,82 @@ function SignUp() {
             )}
           </div>
 
-          <div className=" w-full left-0 translate-x-0  border-2 border-gray-400 rounded-lg bg-cyan-200  sm:w-[50%] sm:relative sm:left-1/2 sm:-translate-x-1/2">
+          <div className=" w-full left-0 translate-x-0  border-2 border-gray-400 rounded-lg bg-cyan-200  sm:w-[60%] sm:relative sm:left-1/2 sm:-translate-x-1/2 ">
             <Form className="w-[95%] mx-auto text-center mt-2 bg-zinc-400 rounded-sm p-2">
-              <table className="w-full ">
+              <table className="border-collapse w-full ">
                 <tbody>
                   <tr className="row">
-                    <td className="label">Name</td>
-                    <td className="input-field" maxLength="10">
+                    <td className="label"><div>Name</div></td>
+                    <td className="input-field" >
                       <Field
                         type="text"
                         className="input-box"
                         name="name"
                         placeholder="Enter your name"
                       />
-
+                    </td>
+                    <td className="errorMsg">
                       <ErrorMessage name="name" component={ErrorMsg} />
                     </td>
                   </tr>
                   <tr className="row">
-                    <td className="label">Email</td>
-                    <td className="input-field" maxLength="20">
+                    <td className="label"><div>Email</div></td>
+                    <td className="input-field" >
                       <Field
                         type="email"
                         className="input-box"
                         name="email"
                         placeholder="Enter your email"
                       />
+                    </td>
+                    <td className="errorMsg">
                       <ErrorMessage name="email" component={ErrorMsg} />
                     </td>
                   </tr>
                   <tr className="row">
-                    <td className="label">UserId</td>
-                    <td className="input-field" maxLength="10">
+                    <td className="label"><div>UserId</div></td>
+                    <td className="input-field" >
                       <Field
                         type="text"
                         className="input-box"
                         name="userId"
                         placeholder="Enter your userId"
                       />
+                    </td>
+                    <td className="errorMsg">
                       <ErrorMessage name="userId" component={ErrorMsg} />
                     </td>
                   </tr>
                   <tr className="row">
-                    <td className="label">Password</td>
-                    <td className="input-field" maxLength="20">
+                    <td className="label"><div>Password</div></td>
+                    <td className="input-field" >
                       <Field
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="input-box"
                         name="password"
                         placeholder="Enter your password"
                       />
+                    </td>
+                    
+                    <td className="errorMsg">
                       <ErrorMessage name="password" component={ErrorMsg} />
                     </td>
                   </tr>
+                  <span className="">
+                        <button
+                          type="button"
+                          className="border-2 border-black px-2 rounded-md bg-white text-xs  h-5"
+                          onClick={tooglePasswordVisibility}
+                        >
+                          {showPassword ? "Hide" : "Show"}
+                        </button>
+                      </span>
+              
                 </tbody>
               </table>
               <br />
               <ErrorMessage name="userType" component={ErrorMsg} />
+      
               <button
                 className="bg-gradient-to-b from-teal-100  to-teal-400 h-10 w-20 border-2 border-black shadow-black shadow-md rounded-lg hover:bg-black hover:text-white"
                 type="submit"

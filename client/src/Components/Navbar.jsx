@@ -1,27 +1,25 @@
 import logo from "../img/logo.png";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 
 // import { userStatus } from "../utils/constant";
-import {getUser} from '../app/user/actions'
+import { getUser } from "../app/user/actions";
+import Loader from "./Loader";
+import { userStatus } from "../utils/constant";
 
 function Navbar() {
-
-
   const [menuBtn, setMenuBtn] = useState(false);
   const [activeMenu, setActiveMenu] = useState("menu");
-  
-  
-  const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
-  console.log('user',user)
-  useEffect(()=>{
-    dispatch(getUser())
-  },[])
-  
-  
-  
+  const { data, isLoading  } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+    
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {}, [menuBtn]);
   function toggler() {
     setMenuBtn(!menuBtn);
@@ -30,9 +28,14 @@ function Navbar() {
       ? setActiveMenu(" menu_active menu")
       : setActiveMenu("menu");
   }
+
+  if (isLoading) {
+    <Loader />;
+  }
+
   return (
     <>
-      <nav className="relative nav_bg ">
+      <nav className="relative nav_bg z-50 ">
         <div className=" mx-2 flex gap-4 justify-between items-center sm:mx-6 md:justify-evenly">
           <div className="w-10 m-2 basis-10">
             <img className="w-full" src={logo} alt="logo-img" />
@@ -45,22 +48,34 @@ function Navbar() {
 
           <div className={activeMenu}>
             <ul className="md:flex">
-              <li className="menu-items">
-                <NavLink to="/" className="menu-href">
-                  Home{" "}
-                </NavLink>
-              </li>
+              {data && data.userStatus === userStatus.approved ? (
+                <>
+                  <li className="menu-items">
+                    <NavLink to="/" className="menu-href">
+                      Home{" "}
+                    </NavLink>
+                  </li>
+                  <li className="menu-items">
+                    <NavLink to="/profile" className="menu-href">
+                      Profile{" "}
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="menu-items">
+                    <NavLink to="/signup" className="menu-href">
+                      SignUp
+                    </NavLink>
+                  </li>
+                  <li className="menu-items">
+                    <NavLink to="/login" className="menu-href">
+                      Login
+                    </NavLink>
+                  </li>
+                </>
+              )}
 
-              <li className="menu-items">
-                <NavLink to="/signup" className="menu-href">
-                  SignUp
-                </NavLink>
-              </li>
-              <li className="menu-items">
-                <NavLink to="/login" className="menu-href">
-                  Login
-                </NavLink>
-              </li>
               <li className="menu-items">
                 <NavLink to="/about" className="menu-href">
                   About{" "}

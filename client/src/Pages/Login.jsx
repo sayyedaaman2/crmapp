@@ -1,21 +1,27 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup"
+import * as Yup from "yup";
 
-import Cookies from 'js-cookie';
-import React from "react";
-import {useNavigate} from 'react-router-dom'
+import Cookies from "js-cookie";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../app/user/userSlice";
 
 import LoginPic from "../img/login-icon.png";
-
 import Auth from "../Services/userService";
 import ErrorMsg from "../Components/ErrorMsg";
 
 function Login() {
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const tooglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const initialValues = {
     userId: "",
@@ -31,13 +37,14 @@ function Login() {
     if (result) {
       if (result.status === 200) {
         const token = result.data.accessToken;
-        Cookies.set("x-access-token",token)
-        console.log('token',token);
+        Cookies.set("x-access-token", token);
+        Cookies.set('id',result.data.userId)
+        console.log("token", token);
         (() => toast.success("Successfully Login..."))();
-        
-        setTimeout(()=>{
-          navigate('/about')
-        },6000)
+        dispatch(addUser(result.data));
+        setTimeout(() => {
+          navigate("/about");
+        }, 6000);
 
         return;
       }
@@ -82,7 +89,9 @@ function Login() {
               <table className="w-full ">
                 <tbody>
                   <tr className="row">
-                    <td className="label">UserId</td>
+                    <td className="label">
+                      <div>UserId</div>
+                    </td>
                     <td className="input-field" maxLength="10">
                       <Field
                         type="text"
@@ -90,21 +99,37 @@ function Login() {
                         name="userId"
                         placeholder="Enter your userId"
                       />
+                    </td>
+                    <td>
                       <ErrorMessage name="userId" component={ErrorMsg} />
                     </td>
                   </tr>
                   <tr className="row">
-                    <td className="label">Password</td>
+                    <td className="label">
+                      <div>Password</div>
+                    </td>
                     <td className="input-field" maxLength="20">
                       <Field
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="input-box"
                         name="password"
+                        autoComplete="false"
                         placeholder="Enter your password"
                       />
+                    </td>
+                    <td>
                       <ErrorMessage name="password" component={ErrorMsg} />
                     </td>
                   </tr>
+                  <div className="flex items-center">
+                    <button
+                      type="button"
+                      className="border-2 border-black px-2 rounded-md bg-white text-xs  h-5"
+                      onClick={tooglePasswordVisibility}
+                    >
+                      {showPassword ? "Hide" : "Show"}
+                    </button>
+                  </div>
                 </tbody>
               </table>
               <br />
