@@ -36,11 +36,16 @@ const Profile = () => {
       accessToken: Cookies.get("x-access-token"),
     });
 
-    console.log("result", result.data.message);
+    console.log("result", result?.data?.message);
     if (result) {
       if (result.status === 200) {
         (() => toast.success(result?.data?.message))();
-        return dispatch(getUser());
+        
+        setTimeout(()=>{
+          dispatch(getUser());
+
+        },6000)
+        return ;
       }
     }
 
@@ -111,7 +116,7 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="  w-auto  lg:w-4/12 px-4 flex justify-center">
+                  <div className="  w-auto  lg:w-4/12  flex justify-end">
                     <div className=" bg-pink-100 h-fit py-2 px-6">
                       <div className=" text-center">
                         <span className=" text-sm lg:text-xl font-bold block uppercase tracking-wide text-gray-600">
@@ -144,7 +149,7 @@ const Profile = () => {
               </div>
               <div className="  bg-slate-800 w-full  px-4 lg:text-center">
                 <div className="py-6 px-3">
-                  <input type="file" onChange={handleImage} className="bg-slate-400"/>
+                  <input type="file" onChange={handleImage} className="bg-slate-400 w-full mb-4 lg:mb-0 md:w-1/2 lg:w-1/3 mr-4"/>
                   <button
                     className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                     type="button"

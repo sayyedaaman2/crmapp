@@ -1,7 +1,14 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities
+;
 
+body {
+    margin : 0px;
+    padding: 0px;
+    height : 100vh;
+    box-sizing: border-box;
+}
 
 .menu{
     @apply hidden z-50 absolute top-full left-0 w-screen translate-x-full transition-all duration-700 ease-in-out md:block md:translate-x-0 md:relative md:w-20 md:basis-48;
@@ -14,11 +21,11 @@
     @apply  bg-gray-100 opacity-100  text-black hover:text-white w-full h-10  uppercase font-semibold md:bg-transparent md:px-2;
 }
 .menu-href{
-    @apply    w-full h-full flex justify-center items-center border-2 border-slate-600 hover:bg-purple-500 active:bg-purple-500 md:border-0 md:hover:bg-purple-600 md:rounded-xl;
+    @apply    w-full h-full flex justify-center items-center border-2 px-4 border-slate-600 hover:bg-purple-500 active:bg-purple-500 md:border-0 md:hover:bg-purple-600 md:rounded-xl;
 }
 
 .nav_bg{
-    background-image: linear-gradient(to right top, #d16b6b, #dc6b7e, #e46d93, #e871ab, #e778c4, #e177d0, #d978dd, #cd7aeb, #c072ee, #b06bf2, #9e64f7, #885ffb);
+    background-image: linear-gradient(to right bottom, #d16b6b, #dc6b7e, #e46d93, #e871ab, #e778c4, #e177d0, #d978dd, #cd7aeb, #c072ee, #b06bf2, #9e64f7, #5116f4);
 }
 
 
@@ -39,4 +46,11 @@
 }
 .errorMsg {
     @apply w-1/6;
+}
+
+.about-paragraph{
+    @apply px-6 lg:px-8 text-[0.9rem] lg:text-lg;
+}
+.list-par {
+    @apply px-6;
 }
