@@ -1,14 +1,15 @@
 const userController = require("../controllers/user.controller");
 const { authJwt } = require("../middlewares")
 const {upload} = require('../multer')
-module.exports = (app) =>{
+const router = require('express').Router();
+
     
-    app.get("/crm/api/users",[authJwt.verifyToken, authJwt.isAdmin ] , userController.findAll);
+router.get("/users",[authJwt.verifyToken, authJwt.isAdmin ] , userController.findAll);
 
-    app.post('/crm/api/user/img',upload.single('image'), [authJwt.verifyToken],userController.uploadImg)
-    
-    app.get("/crm/api/user/:id",[authJwt.verifyToken, authJwt.isValidUserIdInReqParam, authJwt.isAdminOrOwner] , userController.findByUserId);
+router.post('/user/img',upload.single('image'), [authJwt.verifyToken],userController.uploadImg)
 
-    app.put("/crm/api/user/:id",[authJwt.verifyToken, authJwt.isValidUserIdInReqParam, authJwt.isAdminOrOwner, authJwt.isValidUserStatusUserType] ,userController.update);
+router.get("/user/:id",[authJwt.verifyToken, authJwt.isValidUserIdInReqParam, authJwt.isAdminOrOwner] , userController.findByUserId);
 
-}
+router.put("/user/:id",[authJwt.verifyToken, authJwt.isValidUserIdInReqParam, authJwt.isAdminOrOwner, authJwt.isValidUserStatusUserType] ,userController.update);
+
+module.exports = router;

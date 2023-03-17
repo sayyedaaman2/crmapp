@@ -1,12 +1,12 @@
 const authController = require('../controllers/auth.controller');
 const { verifySignUp } = require('../middlewares');
+const router = require('express').Router();
 
-module.exports = (app) =>{
-    
-    //POST /crm/api/v1/auth/signup
-    app.post("/crm/api/auth/signup",[verifySignUp.validateSignUpRequestBody] ,authController.signup);
 
-    //POST /crm/api/v1/auth/signin
-    app.post("/crm/api/auth/signin",[verifySignUp.validateSignInRequestBody], authController.signin);
-    
-}
+//POST /crm/api/v1/auth/signup
+router.post("/auth/signup",[verifySignUp.validateSignUpRequestBody] ,authController.signup);
+
+//POST /crm/api/v1/auth/signin
+router.post("/auth/signin",[verifySignUp.validateSignInRequestBody], authController.signin);
+
+module.exports = router;

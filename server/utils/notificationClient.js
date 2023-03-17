@@ -1,15 +1,26 @@
-const Client = require("node-rest-client").Client;
-const client = new Client();
-const ClientRestCall = require('../configs/client.config');
+const nodemailer = require('nodemailer');
+const {userName,password,clientId,clientSecret,refreshToken} = require('../configs/email.config')
+//todo:solve the nodemailer problem
+const transporter = nodemailer.createTransport({
+    service : 'gmail',
+    auth : {
+        type : 'OAuth2',
+        user : userName,
+        pass: password,
+        clientId : clientId,
+        clientSecret : clientSecret,
+        refreshToken : refreshToken
+    }
+})
 
 module.exports = (subject , content, recepients, requester)=>{
 
     //create the request body
-    const reqBody = {
+    const mailOptions = {
+        from : requester,
+        to : recepients,
         subject : subject,
-        recepientEmails : recepients,
-        content : content,
-        requester : requester
+        text : content,
     }
     
 
