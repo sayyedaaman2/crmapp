@@ -35,19 +35,19 @@ function Navbar() {
 
   return (
     <>
-      <nav className="relative nav_bg z-50 ">
-        <div className=" mx-2 flex gap-4 justify-between items-center sm:mx-6 md:justify-evenly">
-          <div className="w-10 m-2 basis-10">
+      <nav className="relative nav_bg z-50 w-full box-border">
+        <div className="w-[90%] mx-auto flex items-center justify-between">
+          <div className="w-10 m-2">
             <img className="w-full" src={logo} alt="logo-img" />
           </div>
-          <div className=" basis-auto font-bold uppercase text-xs sm:text-lg md:basis-1/2">
+          <div className="  font-bold uppercase text-xs sm:text-lg ">
             <NavLink to="/" className="">
               Customer Realtion Management
             </NavLink>
           </div>
 
           <div className={activeMenu}>
-            <ul className="md:flex">
+            <ul className="md:flex w-[60%] ">
               {data && data.userStatus === userStatus.approved ? (
                 <>
                   <li className="menu-items">

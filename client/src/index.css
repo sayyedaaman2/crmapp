@@ -11,17 +11,17 @@ body {
 }
 
 .menu{
-    @apply hidden z-50 absolute top-full left-0 w-screen translate-x-full transition-all duration-700 ease-in-out md:block md:translate-x-0 md:relative md:w-20 md:basis-48;
+    @apply hidden z-50 absolute top-full left-0 w-screen flex  translate-x-full transition-all duration-700 ease-in-out md:block md:translate-x-0 md:relative md:w-20 md:w-[30%]  lg:flex md:justify-end lg:justify-end;
 }
 
 .menu_active{
     @apply  block translate-x-0 ;
 }
 .menu-items{
-    @apply  bg-gray-100 opacity-100  text-black hover:text-white w-full h-10  uppercase font-semibold md:bg-transparent md:px-2;
+    @apply  bg-gray-100 opacity-100  text-black hover:text-white w-full h-10   uppercase font-semibold md:bg-transparent ;
 }
 .menu-href{
-    @apply    w-full h-full flex justify-center items-center border-2 px-4 border-slate-600 hover:bg-purple-500 active:bg-purple-500 md:border-0 md:hover:bg-purple-600 md:rounded-xl;
+    @apply    w-full h-full flex justify-center items-center border-2 border-slate-600 hover:bg-purple-500 active:bg-purple-500 md:border-0 md:hover:bg-purple-600 md:rounded-xl px-2;
 }
 
 .nav_bg{
