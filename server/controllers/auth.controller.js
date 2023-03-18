@@ -3,7 +3,7 @@ const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
 const constants = require("../utils/constants");
-
+const emailService = require('../utils/emailServices')
 //SignUp and Register
 exports.signup = async (req, res) => {
   if (req.body.userType != constants.userType.customer) {
@@ -32,6 +32,8 @@ exports.signup = async (req, res) => {
       updatedAt: userCreated.updatedAt,
     };
     res.status(201).send(response);
+    emailService.registerUser(response);
+
   } catch (err) {
     console.log("Some error happened ", err.message);
     res.status(500).send({

@@ -11,7 +11,7 @@ const User = require("./models/user.model");
 const authRoutes = require("./routes/auth.route");
 const userRoutes = require("./routes/user.route");
 const ticketRoutes = require("./routes/ticket.route");
-
+const {sendMail} = require('./utils/notificationClient')
 const corsOption = {
   credentials: true,
   origin: ["http://localhost:3000"],
@@ -55,6 +55,17 @@ app.get("/", (req, res) => {
     message: "testing api...",
   });
 });
+// app.get('/email',(req,res)=>{
+//   sendMail('Hey Buddy 😉<sayyedaaman2@gmail.com>','sayyedaaman9@gmail.com','nodemailer check','testing of nodeMailer','<b>testing of nodeMailer</b>').then((data)=>{
+//     // console.log(data)
+//     res.send(data);
+//   }).catch((error)=>{
+//     console.log(`error while the ${error}`)
+//     res.send({
+//       message : error
+//     })
+//   })
+// })
 
 app.use("/crm/api", authRoutes);
 app.use("/crm/api", ticketRoutes);

@@ -1,52 +1,58 @@
-const nodemailer = require('nodemailer');
-const {userName,password,clientId,clientSecret,refreshToken} = require('../configs/email.config')
-//todo:solve the nodemailer problem
-const transporter = nodemailer.createTransport({
-    service : 'gmail',
-    auth : {
-        type : 'OAuth2',
-        user : userName,
-        pass: password,
-        clientId : clientId,
-        clientSecret : clientSecret,
-        refreshToken : refreshToken
-    }
-})
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 
-module.exports = (subject , content, recepients, requester)=>{
+const {
+  userName,
+  clientId,
+  clientSecret,
+  refreshToken,
+  redirectUrl,
+} = require("../configs/email.config");
 
-    //create the request body
-    const mailOptions = {
-        from : requester,
-        to : recepients,
-        subject : subject,
-        text : content,
-    }
+module.exports =  async (mailOptions)=> {
+  try {
     
+    const oAuth2Client = new google.auth.OAuth2(
+      clientId,
+      clientSecret,
+      redirectUrl
+    );
+   
+    oAuth2Client.setCredentials({ refresh_token: refreshToken });
 
-    //Prepare the headers
-    const reqHeader = {
-        "Content-Type": "application/json"
-    }
+    const accessToken = await oAuth2Client.getAccessToken();
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: userName,
+        clientId: clientId,
+        clientSecret: clientSecret,
+        refreshToken: refreshToken,
+        accessToken: accessToken,
+      },
+    });
 
-    //Combine headers and req body together
-    const args = {
-        data : reqBody,
-        headers : reqHeader
-    }
-    console.log(args);
+    // const mailOptions = {
+    //   from: "CRM APP🌏 <sayyedaamandev01@gmail.com>",
+    //   to: "sayyedaaman9@gmail.com",
+    //   subject: "test of gmail api",
+    //   text: "Hello I am a email !!!",
+    //   html: "<h1>Hello I am a email !!!</h1>",
+    // };
 
-    //make a post call and handle the response 
-    
-    try{
-        console.log("in the client function")
-        client.post(ClientRestCall.CLIENT_REST_CALL,args, (data, res)=>{
-
-            console.log("Request sent");
-            console.log(data);
-
-        })
-    }catch(err){
-        console.log("Some Error while sending the message : ", err.message);
-    }
+    // const mailOptions = {
+    //   from: requester,
+    //   to:  recepient,
+    //   subject: subject,
+    //   text: text,
+    //   html: html,
+    // };
+    const result = await transporter.sendMail(mailOptions);
+   
+    return result;
+  } catch (error) {
+    console.log('error',error)
+    return error;
+  }
 }
