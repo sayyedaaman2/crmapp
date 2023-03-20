@@ -1,7 +1,7 @@
 const constants = require("../utils/constants");
 const Ticket = require("../models/ticket.model");
 const User = require("../models/user.model");
-const sendNotificationReq = require('../utils/notificationClient');
+const emailService = require('../utils/emailServices');
 
 exports.createTicket = async (req, res) => {
 
@@ -39,9 +39,13 @@ exports.createTicket = async (req, res) => {
             }
             
             //await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` , "Testing Crm Notification ",`sayyedaamandev01@gmail.com`, "CRM APP");
-
-            await sendNotificationReq(`Ticket created with id : ${ticketCreated._id}` ,`content : ${ticketCreated.description}`,`${customer.email},${engineer.email}, "admin123@gmail.com"`, ticketCreated.reporter);
+            const mailOptions = {
+                user : req.user,
+                ticket : ticketCreated,
+                engineer : engineer
+            }
             res.status(201).send(ticketCreated);
+            emailService.createTicket(mailOptions)
         }
 
     } catch (err) {

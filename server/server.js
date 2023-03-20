@@ -67,9 +67,9 @@ app.get("/", (req, res) => {
 //   })
 // })
 
-app.use("/crm/api", authRoutes);
-app.use("/crm/api", ticketRoutes);
-app.use("/crm/api", userRoutes);
+app.use("/crm/api/auth", authRoutes);
+app.use("/crm/api/ticket", ticketRoutes);
+app.use("/crm/api/user", userRoutes);
 /**
  * So this can be used for the intergation Testing
  */
