@@ -47,7 +47,7 @@ function Navbar() {
           </div>
 
           <div className={activeMenu}>
-            <ul className="md:flex w-[60%] ">
+            <ul className="md:flex w-[100%] ">
               {data && data.userStatus === userStatus.approved ? (
                 <>
                   <li className="menu-items">

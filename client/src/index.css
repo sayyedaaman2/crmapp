@@ -11,7 +11,7 @@ body {
 }
 
 .menu{
-    @apply hidden z-50 absolute top-full left-0 w-screen flex  translate-x-full transition-all duration-700 ease-in-out md:block md:translate-x-0 md:relative md:w-20 md:w-[30%]  lg:flex md:justify-end lg:justify-end;
+    @apply hidden z-50 absolute top-full left-0 w-screen flex  translate-x-full transition-all duration-700 ease-in-out md:block md:translate-x-0 md:relative  md:w-[30%]  lg:flex md:justify-end lg:justify-end;
 }
 
 .menu_active{
