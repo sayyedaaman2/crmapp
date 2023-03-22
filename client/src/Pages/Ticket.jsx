@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import ProfileCard from "../Components/Ticket/ProfileCard";
 import {useDispatch, useSelector} from 'react-redux'
 import TicketList from "../Components/Ticket/Table/TicketList";
+import Loader from '../Components/Loader'
 const Ticket = () => {
   
   const {data, isLoading, isSuccess, errorMessage} = useSelector(state=> state.user);
+
+  if(isLoading){
+    return <Loader/>
+  }
   return (
     <main
       className="realtive block"

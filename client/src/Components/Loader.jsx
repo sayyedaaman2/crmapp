@@ -1,15 +1,17 @@
 import React from "react";
-import { Blocks } from "react-loader-spinner";
+import { BallTriangle } from "react-loader-spinner";
 const Loader = () => {
   return (
-    <div>
-      <Blocks
+    <div className="h-screen w-full flex justify-center items-center">
+      <BallTriangle
+        height={100}
+        width={100}
+        radius={5}
+        color="red"
+        ariaLabel="ball-triangle-loading"
+        wrapperClass={{}}
+        wrapperStyle=""
         visible={true}
-        height="80"
-        width="80"
-        ariaLabel="blocks-loading"
-        wrapperStyle={{}}
-        wrapperClass="blocks-wrapper"
       />
     </div>
   );
