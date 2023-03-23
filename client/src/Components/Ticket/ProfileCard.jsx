@@ -1,7 +1,7 @@
 import React from "react";
 const ProfileCard = ({ user }) => {
   return (
-    <div className=" bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 my-4 mx-4 sm:mx-12 md:mx-40 lg:mx-12">
+    <div className=" bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 my-2 mx-4 sm:mx-12 md:mx-40 lg:mx-12">
       <div className="border-4 border-white px-2 py-4 flex gap-3 ">
         <div className="h-28 w-28 md:h-40 md:w-40 flex items-center justify-center bg-white inline-block rounded-full border-2 border-gray-400">
           {user?.image ? (

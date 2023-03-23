@@ -43,7 +43,7 @@ function Login() {
         (() => toast.success("Successfully Login..."))();
         dispatch(addUser(result.data));
         setTimeout(() => {
-          navigate("/about");
+          navigate("/");
         }, 6000);
 
         return;

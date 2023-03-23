@@ -11,7 +11,7 @@ import About from "./Pages/About";
 import Profile from "./Pages/Profile";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import Ticket from "./Pages/Ticket";
-
+import CreateTicket from "./Pages/CreateTicket";
 function App() {
   return (
     <>
@@ -21,7 +21,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/ticket' element={<Ticket/>} />
+          <Route
+            path="/ticket"
+            element={
+              <ProtectedRoutes>
+                <Ticket />
+              </ProtectedRoutes>
+            }
+          />
+          <Route path="/createticket" element={<CreateTicket />} />
           <Route
             path="/about"
             element={
