@@ -11,7 +11,7 @@ exports.createTicket = async (req, res) => {
             title: req.body.title,
             ticketPriority: req.body.ticketPriority,
             description: req.body.description,
-            status: req.body.status,
+            status: constants.ticketStatsues.open,
             reporter: req.userId// I got it from access token
         }
 
