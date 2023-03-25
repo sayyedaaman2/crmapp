@@ -11,7 +11,7 @@ function Home() {
   }
   return (
     <>
-      <div className="h-screen bg-gradient-to-r to-red-200 via-cyan-200  from-cyan-500 flex justify-center items-start ">
+      <div className="h-full bg-gradient-to-r to-red-200 via-cyan-200  from-cyan-500 flex justify-center items-start ">
         <div className=" w-full  bg-white absolute top-24 left-1/2 -translate-x-1/2  md:w-1/2  ">
           <div className="bg-cover border-2  border-purple-300">
             <img src="https://images.unsplash.com/photo-1675274838343-47d84bd8bb18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=855&q=80" alt="mainPage"></img>

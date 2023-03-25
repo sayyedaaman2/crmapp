@@ -2,16 +2,16 @@ function About() {
   return (
     <>
       <main
-        className=""
+        className="h-full box-border"
         style={{
           backgroundImage: `url(https://images.unsplash.com/photo-1501696461415-6bd6660c6742?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80)`,
         }}
       >
-        <section className="mx-2 md:mx-10 lg:mx-40 py-2 lg:py-5 ">
+        <section className="relative h-full mx-2 md:mx-10 lg:mx-40 py-2 lg:py-5 ">
           <div className="  bg-slate-300 hover:bg-white hover:text-blue-400 hover:shadow-lg shadow-gray-400 transition-all duration-700 ease-in-out h-12 lg:h-20 flex justify-center items-center">
             <h1 className="text-xl lg:text-2xl font-bold  ">About Us</h1>
           </div>
-          <div className="border-2 py-4 bg-slate-100">
+          <div className=" h-[90%] border-2 py-4 bg-slate-100 overflow-auto">
             <article>
               <h1 className="font-bold text-md lg:text-lg px-5">
                 What is Customer Realtionship Management (CRM) ?
@@ -28,7 +28,6 @@ function About() {
             <hr className="border-1 border-black mt-4 mb-5"></hr>
             <article className="w-full">
               <div className="box-border flex flex-col  relative h-fit">
-                
                 <p className="about-paragraph ">
                   A customer relationship model seeks to improve the
                   relationship between a business and the customer. For this,

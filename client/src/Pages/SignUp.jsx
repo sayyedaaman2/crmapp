@@ -33,7 +33,6 @@ function SignUp() {
   const onSubmit = async (values, submitProps) => {
     // console.log("form data", values);
 
-    //Post request write here
     const result = await Auth.signUp(values);
 
     if (result) {

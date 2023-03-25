@@ -35,7 +35,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="relative nav_bg z-50 w-full box-border">
+      <nav className="relative h-14 nav_bg z-50 w-full box-border">
         <div className="w-[90%] mx-auto flex items-center justify-between">
           <div className="w-10 m-2">
             <img className="w-full" src={logo} alt="logo-img" />
