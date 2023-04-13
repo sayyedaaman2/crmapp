@@ -6,7 +6,6 @@ const emailService = require('../utils/emailServices');
 exports.createTicket = async (req, res) => {
 
     try {
-
         const ticketObj = {
             title: req.body.title,
             ticketPriority: req.body.ticketPriority,
@@ -45,7 +44,9 @@ exports.createTicket = async (req, res) => {
                 engineer : engineer
             }
             res.status(201).send(ticketCreated);
-            emailService.createTicket(mailOptions)
+            
+            //todo : sovle the emailservice problem 
+            // emailService.createTicket(mailOptions)
         }
 
     } catch (err) {
