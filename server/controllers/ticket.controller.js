@@ -45,8 +45,7 @@ exports.createTicket = async (req, res) => {
             }
             res.status(201).send(ticketCreated);
             
-            //todo : sovle the emailservice problem 
-            // emailService.createTicket(mailOptions)
+            emailService.createTicket(mailOptions)
         }
 
     } catch (err) {
