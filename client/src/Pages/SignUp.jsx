@@ -180,23 +180,23 @@ function SignUp() {
                 Submit
               </button>
             </Form>
-            <div className=" mx-3 mb-5 h-12 grid grid-cols-2 text-center bg-pink-200 rounded-bl-md rounded-br-md text-sm ">
+            <div className=" mx-5 mb-5 h-12 grid grid-cols-2 text-center bg-pink-200 rounded-bl-md rounded-br-md text-sm ">
               <div className="grid items-center hover:text-blue-700">
-                <Link to="/login" className="login-href">
+                <Link to="/login" className="font-bold h-full grid items-center">
                   I have already Account
                 </Link>
               </div>
-              <div className="grid items-center hover:text-blue-700">
+              <div className="grid items-center hover:text-blue-700 h-full grid items-center ">
                 {userType === constant.userType.customer ? (
                   <button
-                    className="login-href"
+                    className="font-bold"
                     onClick={() => userTypeHandler()}
                   >
                     SignUp as Engineer
                   </button>
                 ) : (
                   <button
-                    className="login-href"
+                    className="font-bold"
                     onClick={() => userTypeHandler()}
                   >
                     SignUp as Customer

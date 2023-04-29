@@ -141,9 +141,9 @@ function Login() {
                 Submit
               </button>
             </Form>
-            <div className=" mx-3 mb-5 h-12 grid grid-cols-1 text-center bg-pink-200 rounded-bl-md rounded-br-md text-sm ">
+            <div className=" mx-5 mb-5 h-12 grid  text-center bg-pink-200 rounded-bl-md rounded-br-md text-sm ">
               <div className="grid items-center hover:text-blue-700">
-                <Link to="/signup" className="login-href">
+                <Link to="/signup" className="font-bold h-full grid items-center">
                   Create a Account
                 </Link>
               </div>
